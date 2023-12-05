@@ -1,0 +1,6 @@
+sentence-transformers 
+click 
+pydantic 
+uvicorn
+fastapi
+huggingface-hub==0.17.3
