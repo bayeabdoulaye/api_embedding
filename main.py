@@ -18,7 +18,7 @@ class ResponseData(BaseModel):
     recordId: int
     data: dict
 model = SentenceTransformer(os.path.join(os.getcwd(), 'all-MiniLM-L6-v2'))
-@app.get("/custom_embedding", response_model=List[ResponseData])
+@app.get("/custom_embedding")
 def custom_embedding(text: Optional[str] = None):
     logging.info('Python HTTP trigger function processed a request.')
     input_text = []
@@ -28,7 +28,6 @@ def custom_embedding(text: Optional[str] = None):
         return {"error": "No input text found"}
 
     embeddings = model.encode(input_text)
-    list_response = [ResponseData(recordId=i, data={"vector": embedding.tolist()}) for i, embedding in enumerate(embeddings)]
-    response = { "values": list_response}
+    response = { "values": [ { "recordId": i, "data": { "vector": embedding.tolist() } } for i, embedding in enumerate(embeddings)]}
 
     return response
