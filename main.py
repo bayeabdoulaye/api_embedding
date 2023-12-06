@@ -28,6 +28,7 @@ def custom_embedding(text: Optional[str] = None):
         return {"error": "No input text found"}
 
     embeddings = model.encode(input_text)
-    response = [ResponseData(recordId=i, data={"vector": embedding.tolist()}) for i, embedding in enumerate(embeddings)]
+    list_response = [ResponseData(recordId=i, data={"vector": embedding.tolist()}) for i, embedding in enumerate(embeddings)]
+    response = { "values": list_response}
 
     return response
