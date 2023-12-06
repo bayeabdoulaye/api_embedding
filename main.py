@@ -17,14 +17,17 @@ class InputData(BaseModel):
 class ResponseData(BaseModel):
     recordId: int
     data: dict
+
 model = SentenceTransformer(os.path.join(os.getcwd(), 'all-MiniLM-L6-v2'))
-@app.get("/custom_embedding")
-def custom_embedding(text: Optional[str] = None):
+
+@app.post("/custom_embedding")
+async def custom_embedding(input_data: InputData):
     logging.info('Python HTTP trigger function processed a request.')
-    input_text = []
-    if text:
-        input_text.append(text)
-    else:
+    logging.info(input_data)
+    print(input_data)
+    input_text = [value.text for value in input_data.values]
+
+    if not input_text:
         return {"error": "No input text found"}
 
     embeddings = model.encode(input_text)
