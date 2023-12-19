@@ -4,3 +4,4 @@ pydantic
 uvicorn
 fastapi
 huggingface-hub==0.17.3
+langchain==0.0.349
