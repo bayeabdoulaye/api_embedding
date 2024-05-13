@@ -1,7 +1,8 @@
-sentence-transformers==2.2.2
-click 
+#sentence-transformers==2.2.2
+#click 
 pydantic 
 uvicorn
 fastapi
-huggingface-hub==0.17.3
-langchain==0.0.349
+gunicorn
+#huggingface-hub==0.17.3
+#langchain==0.0.349
