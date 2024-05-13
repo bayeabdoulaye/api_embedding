@@ -47,7 +47,8 @@ class TextItemOutput(BaseModel):
 class TextSplitResponse(BaseModel):
     values: List[TextSplitOutput]
 
-model = SentenceTransformer(os.path.join(os.getcwd(), 'all-MiniLM-L6-v2'))
+model = 'all-MiniLM-L6-v2'
+model = SentenceTransformer(model)
 text_splitter = RecursiveCharacterTextSplitter(chunk_size = 1024,chunk_overlap = 40)
 
 @app.post("/custom_embedding")
